@@ -90,7 +90,10 @@ void write_elf_file(const char *path,
   hdr.e_ident[EI_OSABI] = ELFOSABI_LINUX;
   hdr.e_ident[EI_ABIVERSION] = 0;
   hdr.e_ident[EI_PAD] = 0;
-  /*  hdr.e_ident[EI_BRAND] = 12; */
+  for (i = EI_PAD; i < EI_NIDENT; ++i)
+    {
+      hdr.e_ident[i] = 0;
+    }
   hdr.e_type = ET_REL;
   hdr.e_machine = EM_386;
   hdr.e_version = EV_CURRENT;

@@ -11,6 +11,7 @@
 
 #define MOD_REG 3
 
+#define REF_NONE (-1)
 #define REF_REL_1 0 /* relative reference occupying one byte */
 #define REF_REL_4 1 /* relative reference occupying four bytes */
 #define REF_ABS 2 /* absolute reference */
@@ -173,6 +174,7 @@ static int s_top;
 /* Helper functions. */
 
 static void add_label(const char *label);
+// ref_type is REF_NONE for a global label with a NULL ref
 static entry_t *add_forward_label(const char *label, int ref_type);
 static void write_abs_label(const char *label);
 static void write_instr_arg1_reg(arg_t *arg1, instr_descr_t des);
@@ -287,13 +289,21 @@ static entry_t *add_forward_label(const char *label, int ref_type)
   fwd_label_t *fwd;
   entry_t *pe;
 
-  r = (ref_t*) xmalloc(sizeof(ref_t));
-  r->next = 0;
-  r->type = ref_type;
-  r->offset = sec_offset[csec];
-  r->linenum = linenum;
+  if (ref_type != REF_NONE)
+    {
+      r = (ref_t*) xmalloc(sizeof(ref_t));
+      r->next = 0;
+      r->type = ref_type;
+      r->offset = sec_offset[csec];
+      r->linenum = linenum;
+    }
+  else
+    {
+      r = NULL;
+    }
   fwd = (fwd_label_t*) xmalloc(sizeof(fwd_label_t));
   fwd->ref = r;
+  fwd->global = (ref_type == REF_NONE);
   fwd->label = xstrdup(label);
   fwd->next = forward_labels;
   if (forward_labels != NULL)
@@ -1615,14 +1625,7 @@ int translate(const char *infile, const char *outfile)
                 pe = symtab_search(arg->u.label);
                 if (pe == NULL)
                   {
-                    fwd = (fwd_label_t*) xmalloc(sizeof(fwd_label_t));
-                    fwd->ref = NULL;
-                    fwd->global = 1;
-                    fwd->label = xstrdup(arg->u.label);
-                    ++se_top;
-                    symtab_entries[se_top].type = SYM_FORWARD_LABEL;
-                    symtab_entries[se_top].u.data = fwd;
-                    symtab_insert(fwd->label, &symtab_entries[se_top]);
+                    add_forward_label(arg->u.label, REF_NONE);
                   }
                 else
                   {
