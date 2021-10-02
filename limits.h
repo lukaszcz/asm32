@@ -1,0 +1,17 @@
+
+#ifndef LIMITS_H
+#define LIMITS_H
+
+#define MAX_STR_LEN 256
+#define MAX_LABEL_LEN 256
+#define MAX_INSTR_LEN 16
+#define MAX_LINE_LEN 1024
+#define MAX_ARGS 64
+#define MAX_LABELS 2048
+#define MAX_SYMBOLS 2048
+#define MAX_RELOCATIONS 4096
+#define SYMTAB_SIZE 2048
+#define MAX_SECTIONS 2
+
+
+#endif /* LIMITS_H */
