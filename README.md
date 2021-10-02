@@ -10,6 +10,7 @@ Usage
 * Compilation: `make`
 * Tests: `make test`
 * Invocation: `asm32 program.asm`
+* Examples: [tests](tests/)
 
 Copyright and license
 ---------------------
