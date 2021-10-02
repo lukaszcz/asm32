@@ -151,13 +151,13 @@ ok:	mov byte [edi], 0
         section .data
 num1:		dd 0
 num2:		dd 0
-calc:		db 0x0A, 'Kalkulator.', 0xA, 0
-promptd:	db 'Wpisz dzialanie (+,-,*,/,^,q).', 0x0A, 0
-prompt1:	db 'Wpisz pierwszy argument.', 0x0A, 0
-prompt2:	db 'Wpisz drugi argument.', 0x0A, 0
-wrong_oper:	db 'Zle dzialanie.', 0x0A, 0
-wynik_str:	db 'Wynik: %d', 0x0A, 0
-div_zero_str:	db 'Dzielenie przez zero.', 0x0A, 0
+calc:		db 0x0A, 'Calculator.', 0xA, 0
+promptd:	db 'Input operation (+,-,*,/,^,q).', 0x0A, 0
+prompt1:	db 'Input first argument.', 0x0A, 0
+prompt2:	db 'Input second argument.', 0x0A, 0
+wrong_oper:	db 'Bad operation.', 0x0A, 0
+wynik_str:	db 'Result: %d', 0x0A, 0
+div_zero_str:	db 'Division by zero.', 0x0A, 0
 str1:		db '%c', 0x0A, 0
 str2:		db '%u', 0x0A, 0
 oper:		db 0

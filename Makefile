@@ -30,9 +30,9 @@ Makefile: $(DEPENDS)
 test: tests/calc tests/hello
 
 tests/calc: all tests/calc.asm
-	./asm tests/calc.asm
+	./asm32 tests/calc.asm
 	ld -o tests/calc tests/calc.o -lc -dynamic-linker /lib/ld-linux.so.2
 
 tests/hello: all tests/hello.asm
-	./asm tests/hello.asm
+	./asm32 tests/hello.asm
 	ld -o tests/hello tests/hello.o

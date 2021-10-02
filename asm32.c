@@ -14,7 +14,7 @@ int main(int argc, char **argv)
   if (argc != 2)
     {
       str = xstrdup(argv[0]);
-      fprintf(stderr, "Usage: %s program.asm", basename(str));
+      fprintf(stderr, "Usage: %s program.asm\n", basename(str));
       free(str);
       return -1;
     }
@@ -26,7 +26,7 @@ int main(int argc, char **argv)
     {
       free(str);
       str = xstrdup(argv[0]);
-      fprintf(stderr, "Usage: %s program.asm", basename(str));
+      fprintf(stderr, "Usage: %s program.asm\n", basename(str));
       free(str);
       return -1;
     }

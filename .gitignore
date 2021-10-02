@@ -35,6 +35,9 @@
 *.i*86
 *.x86_64
 *.hex
+asm32
+tests/calc
+tests/hello
 
 # Debug files
 *.dSYM/

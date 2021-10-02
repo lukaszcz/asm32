@@ -164,7 +164,7 @@ static opinstr_t opinstr[OPCODES_NUMBER];
 static fwd_label_t *forward_labels;
 static entry_t symtab_entries[SYMTAB_SIZE + 1];
   /* +1 to avoid checking whether the table is full (if it is there
-     will be a fatal error in symtab_insert())  */
+     will be a fatal error in symtab_insert()) */
 static int se_top;
 static sym_t symbols[MAX_SYMBOLS];
 static int s_top;
@@ -210,8 +210,8 @@ static void add_label(const char *label)
               symbols[s_top].global = 1;
             }
           r = fwd->ref;
-          /* r may be NULL if it was defined with global
-             pseudoinstruction, but as yet never used */
+          /* r may be NULL if it was defined with a global
+             pseudoinstruction but as yet never used */
           while (r != NULL)
             {
               switch(r->type){
@@ -261,8 +261,8 @@ static void add_label(const char *label)
               fwd->next->prev = fwd->prev;
             }
           free(symbols[s_top].name);
-          free(fwd);
           symbols[s_top].name = fwd->label;
+          free(fwd);
           pe->u.value = s_top;
           pe->type = SYM_LABEL;
         }
