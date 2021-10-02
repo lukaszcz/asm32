@@ -14,6 +14,6 @@ Usage
 Copyright and license
 ---------------------
 
-Copyright (C) 2005 by Lukasz Czajka.
+Copyright (C) 2006-2021 by Lukasz Czajka.
 
 Distributed under the MIT license. See [LICENSE](LICENSE).
